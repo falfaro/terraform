@@ -7,4 +7,17 @@ resource "openstack_compute_instance_v2" "{{hostname}}" {
   network {
     name = "ubuntu-net"
   }
+  connection {
+    user = "ubuntu"
+    type = "ssh"
+    timeout = "2m"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sleep 30s",
+      "export PATH=$PATH:/usr/bin",
+      "sudo apt-get update",
+      "sudo apt-get -y install python-minimal",
+    ]
+  }
 }
