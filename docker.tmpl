@@ -2,3 +2,4 @@
 {% for hostname in hostnames.keys() | sort %}
 {% include "openstack/instance.tmpl" %}
 {% endfor %}
+{% include "output.tmpl" %}
