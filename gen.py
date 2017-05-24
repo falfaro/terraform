@@ -17,6 +17,6 @@ context = {
   }
 }
 
-with open('docker.tf', 'w') as h:
+with open('tf/docker.tf', 'w') as h:
   result = render('docker.tmpl', context)
   h.write(result)

@@ -1,19 +1,4 @@
-# Configure the OpenStack Provider
-provider "openstack" {
-  user_name   = "admin"
-  tenant_name = "admin"
-  password    = "openstack"
-  auth_url    = "http://10.0.8.46:5000/v2.0"
-}
+{% include "openstack/provider.tmpl" %}
 {% for hostname in hostnames.keys() | sort %}
-resource "openstack_compute_instance_v2" "{{hostname}}" {
-  name            = "{{hostname}}"
-  image_name      = "xenial-lxd"
-  flavor_name     = "docker"
-  key_pair        = "default"
-  security_groups = ["default"]
-  network {
-    name = "ubuntu-net"
-  }
-}
+{% include "openstack/instance.tmpl" %}
 {% endfor %}

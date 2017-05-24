@@ -1,0 +1,10 @@
+resource "openstack_compute_instance_v2" "{{hostname}}" {
+  name            = "{{hostname}}"
+  image_name      = "xenial-lxd"
+  flavor_name     = "docker"
+  key_pair        = "default"
+  security_groups = ["default"]
+  network {
+    name = "ubuntu-net"
+  }
+}
